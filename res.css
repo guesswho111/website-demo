@@ -1,0 +1,503 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    background-color: #2c3e50;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.tab-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.tab-btn.active {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.content {
+    flex: 2;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.vehicle-list, .reservations-list {
+    margin-bottom: 20px;
+}
+
+.vehicle-item, .reservation-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-left: 4px solid #3498db;
+    position: relative;
+}
+
+.vehicle-item.unavailable {
+    border-left-color: #e74c3c;
+    opacity: 0.7;
+}
+
+.cancelled-reservation-item {
+    background-color: #f9f9f9;
+    border-left: 4px solid #95a5a6;
+    opacity: 0.8;
+}
+
+.cancelled-reservation-item h3 {
+    color: #7f8c8d;
+}
+
+.reservation-item.pending {
+    border-left-color: #f39c12;
+    background-color: #fef9e7;
+}
+
+.reservation-item.approved {
+    border-left-color: #27ae60;
+    background-color: #eafaf1;
+}
+
+.reservation-item.rejected {
+    border-left-color: #e74c3c;
+    background-color: #fdeaea;
+}
+
+.confirmation-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+.status-pending {
+    background-color: #f39c12;
+    color: white;
+}
+
+.status-approved {
+    background-color: #27ae60;
+    color: white;
+}
+
+.status-rejected {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.vehicle-item h3, .reservation-item h3, .cancelled-reservation-item h3 {
+    margin-bottom: 5px;
+}
+
+.vehicle-item p, .reservation-item p, .cancelled-reservation-item p {
+    margin-bottom: 5px;
+}
+
+.vehicle-status {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.vehicle-status-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    padding-bottom: 65px;
+}
+
+.vehicle-status-item.available {
+    border-top: 4px solid #2ecc71;
+}
+
+.vehicle-status-item.unavailable {
+    border-top: 4px solid #e74c3c;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-available {
+    background-color: #2ecc71;
+}
+
+.status-unavailable {
+    background-color: #e74c3c;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.return-btn {
+    background-color: #f39c12;
+}
+
+.return-btn:hover {
+    background-color: #e67e22;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+}
+
+.approve-btn {
+    background-color: #27ae60;
+}
+
+.approve-btn:hover {
+    background-color: #219a52;
+}
+
+.reject-btn {
+    background-color: #e74c3c;
+}
+
+.reject-btn:hover {
+    background-color: #c0392b;
+}
+
+.delete-vehicle-btn, 
+.delete-reservation-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+    width: auto;
+    min-width: 100px;
+    transition: all 0.2s ease;
+}
+
+.delete-vehicle-btn:hover, 
+.delete-reservation-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.02);
+}
+
+.edit-vehicle-btn {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-right: 8px;
+    width: auto;
+    min-width: 100px;
+    transition: all 0.2s ease;
+}
+
+.edit-vehicle-btn:hover {
+    background-color: #e67e22;
+    transform: scale(1.02);
+}
+
+.vehicle-actions {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.vehicle-actions button {
+    width: 80px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+.reservation-item .delete-reservation-btn {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.admin-controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.all-reservations {
+    margin-top: 30px;
+}
+
+.cancelled-reservations {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.pending-approvals {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fef9e7;
+    border-radius: 5px;
+    border-left: 4px solid #f39c12;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close, .close-edit, .close-driver, .close-edit-driver {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-notes {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.admin-notes strong {
+    color: #2c3e50;
+}
+
+.cancellation-reason {
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    border-left: 4px solid #e74c3c;
+}
+
+.cancellation-reason strong {
+    color: #c62828;
+}
+
+.driver-management {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.drivers-list {
+    margin-top: 20px;
+}
+
+.driver-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-left: 4px solid #3498db;
+    position: relative;
+}
+
+.driver-item h3 {
+    margin-bottom: 5px;
+}
+
+.driver-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.driver-actions button {
+    width: 80px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+/* Add to res.css */
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.filter-controls label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .vehicle-status {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .return-btn, .cancel-btn, .approve-btn, .reject-btn {
+        width: 100%;
+    }
+    
+    .vehicle-actions {
+        position: static;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+    
+    .vehicle-actions button {
+        width: auto;
+        min-width: 80px;
+    }
+    
+    .vehicle-status-item {
+        padding-bottom: 15px;
+    }
+
+    .admin-controls {
+        flex-direction: column;
+    }
+}
